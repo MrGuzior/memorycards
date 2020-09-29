@@ -17,7 +17,7 @@ import './Board.css'
 const Board = () => {
     const dispatch = useDispatch();
     const turnedCards = useSelector(getTurnedCards)
-    const cardArray = count => Array.from(Array(count).keys())
+    const cardArray = count => Array.from(Array(count).keys()).copyWithin(count/2,0,count/2)
 
     const handleTurn = (id) => {
         if(turnedCards[0] !== id){
@@ -36,7 +36,7 @@ const Board = () => {
     const createCards = cardArray(10).map((card, index) => {
         dispatch(addCard({
             id:index,
-            value: index
+            value: card
         }))
         return <Card key={index} id={index} handleTurn={handleTurn}/>
     })
