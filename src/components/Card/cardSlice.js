@@ -18,7 +18,7 @@ export const cardSlice = createSlice({
         setTurnedCards: (state, action) => {
             state.turnedCards = [...state.turnedCards, action.payload]
         },
-        clearTurnedCards: (state, action) => {
+        clearTurnedCards: (state) => {
             state.turnedCards = []
         },
         setValue: (state, action) => {
@@ -31,8 +31,6 @@ export const cardSlice = createSlice({
 })
 
 export const {addCard,clearCards,turn, setValue, setTurnedCards, clearTurnedCards} = cardSlice.actions
-
-//export const getValue = state => state.card.value
 
 export const getValue = id => state => {
     return state.card.cards.filter(card => card.id === id)[0].value

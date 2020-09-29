@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 import {useSelector, useDispatch} from 'react-redux'
 import {
@@ -12,7 +12,6 @@ import {
 
 import Card from '../Card/Card'
 import './Board.css'
-
 
 const Board = () => {
     const dispatch = useDispatch();

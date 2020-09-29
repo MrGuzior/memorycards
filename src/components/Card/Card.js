@@ -1,18 +1,10 @@
-import React, {useState, useEffect} from 'react'
-import {useSelector, useDispatch} from 'react-redux'
-import {
-    getTurned,
-    getValue,
-    getTurnedCards
-} from './cardSlice'
-
+import React from 'react'
+import {useSelector} from 'react-redux'
+import {getTurned, getValue, getTurnedCards} from './cardSlice'
 import './Card.css'
-
-
 
 const Card = ({id, handleTurn}) => {
     const cardValue = useSelector(getValue(id))
-    const dispatch = useDispatch();
     const turned = useSelector(getTurned(id))
     const turnedCards = useSelector(getTurnedCards)
 
