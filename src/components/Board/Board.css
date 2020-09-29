@@ -1,0 +1,8 @@
+.game_board{
+    margin: auto;
+    display: flex;
+    max-width: 60%;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 20px;
+}

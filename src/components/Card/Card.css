@@ -1,0 +1,15 @@
+.card{
+    width: 100px;
+    height: 150px;
+    border: 1px solid black;
+    margin: 3px;
+    text-align: center;
+}
+
+.back{
+    background-color: antiquewhite
+}
+.face{
+    background-color: cyan
+
+}
