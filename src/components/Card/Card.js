@@ -8,13 +8,12 @@ const Card = ({id, handleTurn}) => {
     const turned = useSelector(getTurned(id))
     const turnedCards = useSelector(getTurnedCards)
     const visible = useSelector(getVisible(id))
-
-    let card;
-    const face = <div onClick={()=>handleClick(id, cardValue)} className={`card face ${visible ?  null : ' hide '}`} >{cardValue + 1}</div>;
-    const back = <div onClick={()=>handleClick(id, cardValue)} className={`card back ${visible ?  null : ' hide '}`} >Card</div>;
-    card = turned ? face : back;
-
+    
     const handleClick = (id, value) => turnedCards.length < 2 ? handleTurn(id, value) : null
+
+    const card = turned ? 
+        <div className={`card face ${visible ?  null : ' hide '}`} >{cardValue + 1}</div> :
+        <div onClick={()=>handleClick(id, cardValue)} className={`card back ${visible ?  null : ' hide '}`} >Card</div>
 
     return (
         <div>
