@@ -9,14 +9,14 @@ export const cardSlice = createSlice({
     reducers: {
         addCard: (state, action) => {
             const {id, value} = action.payload
-            state.cards.push({id,value,turned: false})
+            state.cards.push({id,value,visible:true,turned: false})
         },
         turn: (state, action) => {
                 const id = action.payload
                 state.cards[id].turned = !state.cards[id].turned
         },
         setTurnedCards: (state, action) => {
-            state.turnedCards = [...state.turnedCards, action.payload]
+            state.turnedCards = [...state.turnedCards, {id:action.payload.id, value:action.payload.value}]
         },
         clearTurnedCards: (state) => {
             state.turnedCards = []
@@ -24,13 +24,17 @@ export const cardSlice = createSlice({
         setValue: (state, action) => {
             state.value = action.payload
         },
+        setVisible: (state, action) => {
+            const id = action.payload
+            state.cards[id].visible = false
+        },
         clearCards: (state) => {
             state.cards = []
         }
     }
 })
 
-export const {addCard,clearCards,turn, setValue, setTurnedCards, clearTurnedCards} = cardSlice.actions
+export const {addCard,clearCards,turn, setValue, setTurnedCards, clearTurnedCards, setVisible} = cardSlice.actions
 
 export const getValue = id => state => {
     return state.card.cards.filter(card => card.id === id)[0].value
@@ -38,6 +42,10 @@ export const getValue = id => state => {
 
 export const getTurned = id => state => {
     return state.card.cards.filter(card => card.id === id)[0].turned
+}
+
+export const getVisible = id => state => {
+    return state.card.cards.filter(card=> card.id === id)[0].visible
 }
 
 export const getTurnedCards = state => state.card.turnedCards

@@ -1,19 +1,20 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
-import {getTurned, getValue, getTurnedCards} from './cardSlice'
+import {getTurned, getValue, getTurnedCards, getVisible} from './cardSlice'
 import './Card.css'
 
 const Card = ({id, handleTurn}) => {
     const cardValue = useSelector(getValue(id))
     const turned = useSelector(getTurned(id))
     const turnedCards = useSelector(getTurnedCards)
+    const visible = useSelector(getVisible(id))
 
     let card;
-    const face = <div onClick={()=>handleClick(id)} className='card face' >{cardValue + 1}</div>;
-    const back = <div onClick={()=>handleClick(id)} className='card back' >Card</div>;
+    const face = <div onClick={()=>handleClick(id, cardValue)} className={`card face ${visible ?  null : ' hide '}`} >{cardValue + 1}</div>;
+    const back = <div onClick={()=>handleClick(id, cardValue)} className={`card back ${visible ?  null : ' hide '}`} >Card</div>;
     card = turned ? face : back;
 
-    const handleClick = id => turnedCards.length < 2 ? handleTurn(id) : null
+    const handleClick = (id, value) => turnedCards.length < 2 ? handleTurn(id, value) : null
 
     return (
         <div>
